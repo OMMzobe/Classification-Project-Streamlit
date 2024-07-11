@@ -3,3 +3,8 @@ pandas
 seaborn
 matplotlib
 nltk
+beautifulsoup4
+replicate
+seaborn
+streamlit
+nltk
