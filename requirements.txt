@@ -1,0 +1,10 @@
+numpy
+pandas
+seaborn
+matplotlib
+nltk
+beautifulsoup4
+replicate
+seaborn
+streamlit
+scikit-learn
