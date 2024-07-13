@@ -3,6 +3,7 @@ pandas
 seaborn
 matplotlib
 nltk
+nltk.corpus.stopwords
 beautifulsoup4
 replicate
 seaborn
