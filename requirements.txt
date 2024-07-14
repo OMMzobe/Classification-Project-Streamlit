@@ -8,3 +8,4 @@ replicate
 seaborn
 streamlit
 scikit-learn
+pyspellchecker
