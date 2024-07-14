@@ -7,6 +7,7 @@ import re
 import seaborn as sns
 import streamlit as st
 
+
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -86,30 +87,36 @@ def df_processor(dataframe):
     print(f'\nStrings before tokenizing and removing stopwords:\n{prestring}\n\nStrings after tokenizing and removing stopwords:\n{poststring}')
 
     return df
+
     
-
-
 def main():
     #collect user text
     news_text = st.text_area("Enter News Text: ", height = 200)
 
-    #convert user text into a df
-    userdf = pd.DataFrame({'all_text': [news_text]})
-
-    #perform preprocessing using our preprocessing function - df_processor
-    cleandf = df_processor(userdf)
-
-    #convert to features using my vectorizer
-    X_ft = vectorizer.transform(cleandf['all_text'])
+    if st.button("Classify"):
+        if news_text:
 
 
-    #perform a prediction on the vectorized text
-    y_pred = modelNB.predict(X_ft)
+            #convert user text into a df
+            userdf = pd.DataFrame({'all_text': [news_text]})
 
-    #inverse transform and print the category
-    y_tran = le.inverse_transform(y_pred)
-    readable_cat = y_tran[0].title()
-    st.warning(cleandf.head())
+            #perform preprocessing using our preprocessing function - df_processor
+            cleandf = df_processor(userdf)
+
+            #convert to features using my vectorizer
+            X_ft = vectorizer.transform(cleandf['all_text'])
+
+            #perform a prediction on the vectorized text
+            y_pred = modelNB.predict(X_ft)
+
+            #inverse transform and print the category
+            y_tran = le.inverse_transform(y_pred)
+            readable_cat = y_tran[0].title()
+
+            #output to the reader
+            st.success(readable_cat)
+        else:
+            st.warning("Please enter some news text.")
 
 if __name__ == "__main__":
     main()
