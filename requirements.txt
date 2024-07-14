@@ -8,4 +8,4 @@ replicate
 seaborn
 streamlit
 scikit-learn
-pyspellchecker
+--force-reinstall pyspellchecker
